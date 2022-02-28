@@ -9,7 +9,7 @@ We create an Entity Framework Code First workflow and an ASP.NET Core Web API in
 - [Maintainers](#maintainers)
 
 ## Name
-Assignment 3 Movie Characters API.
+Assignment 3 Movie Characters API
 
 ## Description
 We create an Entity Framework Code First workflow of a franchise/movie/character database.
