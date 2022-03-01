@@ -11,24 +11,15 @@ namespace Assignment3
 {
     public class Program
     {
-        // TODO: Seed movie data
-        // TODO: Add movie controller
-        // TODO: Add character Get
-        // TODO: Add character GetById
-        // TODO: Add character Post
-        // TODO: Add character Put
-        // TODO: Add character Delete
-
-        // TODO: Add franchise class
-        // TODO: Add migration
-        // TODO: Check nullability, URL, required etc.
-        // TODO: Seed franchise data
         // TODO: Add franchise controller
-        // TODO: Add character Get
-        // TODO: Add character GetById
-        // TODO: Add character Post
-        // TODO: Add character Put
-        // TODO: Add character Delete
+        // TODO: Add franchise Get
+        // TODO: Add franchise GetById
+        // TODO: Add franchise Post
+        // TODO: Add franchise Put
+        // TODO: Add franchise Delete
+
+        // TODO: Add documentation
+        // TODO: Add can return...?
 
         // TODO: Add character movie relationship
         // TODO: Add update characters in movie
