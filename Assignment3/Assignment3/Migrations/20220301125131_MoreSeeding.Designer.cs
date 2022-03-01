@@ -3,14 +3,16 @@ using Assignment3.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Assignment3.Migrations
 {
     [DbContext(typeof(MovieCharacterDbContext))]
-    partial class MovieCharacterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220301125131_MoreSeeding")]
+    partial class MoreSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,51 +71,6 @@ namespace Assignment3.Migrations
                             Gender = "Male",
                             Name = "Obi-Wan Kenobi",
                             Picture = "https://i.kym-cdn.com/entries/icons/mobile/000/024/965/well.jpg"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Gender = "Male",
-                            Name = "Bilbo Baggins",
-                            Picture = "https://static3.srcdn.com/wordpress/wp-content/uploads/2018/01/Bilbo-in-Fellowship-of-the-Ring.jpg"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Gender = "Male",
-                            Name = "Frodo Baggins",
-                            Picture = "https://en.meming.world/images/en/8/8e/All_Right_Then%2C_Keep_Your_Secrets.jpg"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Alias = "Gollum",
-                            Gender = "Gollum",
-                            Name = "Sméagol",
-                            Picture = "https://i.kym-cdn.com/entries/icons/original/000/019/367/gollum_395_394.jpg"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Gender = "Male",
-                            Name = "Kevin McCallister",
-                            Picture = "https://images0.persgroep.net/rcs/OEtfvPQu1Jbi2gg2oWKZcKcbxOM/diocontent/109256902/_fill/597/900/?appId=21791a8992982cd8da851550a453bd7f&quality=0.9"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Alias = "Wet Bandit",
-                            Gender = "Male",
-                            Name = "Harry Lyme",
-                            Picture = "https://www.nme.com/wp-content/uploads/2016/09/2015_HomeAlone_13_111615-2.jpg"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Alias = "Wet Bandit",
-                            Gender = "Male",
-                            Name = "Marv Murchins",
-                            Picture = "https://www.cheatsheet.com/wp-content/uploads/2017/12/home-alone-iron.jpg"
                         });
                 });
 #pragma warning restore 612, 618

@@ -11,14 +11,7 @@ namespace Assignment3
 {
     public class Program
     {
-        // TODO: Check nullability, URL, required etc.
         // TODO: Seed character data
-        // TODO: Add character controller
-        // TODO: Add character Get
-        // TODO: Add character GetById
-        // TODO: Add character Post
-        // TODO: Add character Put
-        // TODO: Add character Delete
 
         // TODO: Repository pattern?
 
