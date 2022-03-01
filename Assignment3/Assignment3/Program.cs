@@ -11,12 +11,8 @@ namespace Assignment3
 {
     public class Program
     {
-        // TODO: Add franchise controller
-        // TODO: Add franchise Get
-        // TODO: Add franchise GetById
-        // TODO: Add franchise Post
-        // TODO: Add franchise Put
-        // TODO: Add franchise Delete
+        // TODO: Check Controllers
+        // TODO: Add [FromBody]?
 
         // TODO: Add documentation
         // TODO: Add can return...?
