@@ -54,7 +54,7 @@ namespace Assignment3.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException e)
+            catch (DbUpdateConcurrencyException)
             {
                 if (!FranchiseExists(id))
                 {

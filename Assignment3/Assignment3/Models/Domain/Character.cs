@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Assignment3.Models.Domain
 {
     public class Character
     {
+        // PK
         public int Id { get; set; }
+
+        // Properties
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
@@ -15,5 +19,8 @@ namespace Assignment3.Models.Domain
         [Url]
         [MaxLength(300)]
         public string Picture { get; set; }
+
+        // Relationships
+        public ICollection<Movie> Movies { get; set; }
     }
 }

@@ -169,6 +169,9 @@ namespace Assignment3.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("FranchiseId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Genre")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
@@ -191,6 +194,8 @@ namespace Assignment3.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FranchiseId");
+
                     b.ToTable("Movies");
 
                     b.HasData(
@@ -198,6 +203,7 @@ namespace Assignment3.Migrations
                         {
                             Id = 1,
                             Director = "George Lucas",
+                            FranchiseId = 1,
                             Genre = "Action,Adventure,Fantasy,Sci-Fi",
                             Picture = "https://upload.wikimedia.org/wikipedia/en/4/40/Star_Wars_Phantom_Menace_poster.jpg?20181008114735",
                             ReleaseYear = 1999,
@@ -208,6 +214,7 @@ namespace Assignment3.Migrations
                         {
                             Id = 2,
                             Director = "George Lucas",
+                            FranchiseId = 1,
                             Genre = "Action,Adventure,Fantasy,Sci-Fi",
                             Picture = "https://upload.wikimedia.org/wikipedia/en/3/32/Star_Wars_-_Episode_II_Attack_of_the_Clones_%28movie_poster%29.jpg",
                             ReleaseYear = 2002,
@@ -218,6 +225,7 @@ namespace Assignment3.Migrations
                         {
                             Id = 3,
                             Director = "George Lucas",
+                            FranchiseId = 1,
                             Genre = "Action,Adventure,Fantasy,Sci-Fi",
                             Picture = "https://upload.wikimedia.org/wikipedia/en/9/93/Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg",
                             ReleaseYear = 2005,
@@ -228,6 +236,7 @@ namespace Assignment3.Migrations
                         {
                             Id = 4,
                             Director = "George Lucas",
+                            FranchiseId = 1,
                             Genre = "Action,Adventure,Fantasy,Sci-Fi",
                             Picture = "https://upload.wikimedia.org/wikipedia/en/4/40/Star_Wars_Phantom_Menace_poster.jpg?20181008114735",
                             ReleaseYear = 1977,
@@ -238,6 +247,7 @@ namespace Assignment3.Migrations
                         {
                             Id = 5,
                             Director = "Irvin Kershner",
+                            FranchiseId = 1,
                             Genre = "Action,Adventure,Fantasy,Sci-Fi",
                             Picture = "https://upload.wikimedia.org/wikipedia/en/4/40/Star_Wars_Phantom_Menace_poster.jpg?20181008114735",
                             ReleaseYear = 1980,
@@ -248,6 +258,7 @@ namespace Assignment3.Migrations
                         {
                             Id = 6,
                             Director = "Richard Marquand",
+                            FranchiseId = 1,
                             Genre = "Action,Adventure,Fantasy,Sci-Fi",
                             Picture = "https://upload.wikimedia.org/wikipedia/en/4/40/Star_Wars_Phantom_Menace_poster.jpg?20181008114735",
                             ReleaseYear = 1983,
@@ -258,6 +269,7 @@ namespace Assignment3.Migrations
                         {
                             Id = 7,
                             Director = "Peter Jackson",
+                            FranchiseId = 2,
                             Genre = "Action,Adventure,Drama,Fantasy",
                             Picture = "https://upload.wikimedia.org/wikipedia/en/8/8a/The_Lord_of_the_Rings_The_Fellowship_of_the_Ring_%282001%29.jpg",
                             ReleaseYear = 2001,
@@ -268,6 +280,7 @@ namespace Assignment3.Migrations
                         {
                             Id = 8,
                             Director = "Peter Jackson",
+                            FranchiseId = 2,
                             Genre = "Action,Adventure,Drama,Fantasy",
                             Picture = "https://upload.wikimedia.org/wikipedia/en/d/d0/Lord_of_the_Rings_-_The_Two_Towers_%282002%29.jpg",
                             ReleaseYear = 2002,
@@ -278,6 +291,7 @@ namespace Assignment3.Migrations
                         {
                             Id = 9,
                             Director = "Peter Jackson",
+                            FranchiseId = 2,
                             Genre = "Action,Adventure,Drama,Fantasy",
                             Picture = "https://upload.wikimedia.org/wikipedia/en/b/be/The_Lord_of_the_Rings_-_The_Return_of_the_King_%282003%29.jpg",
                             ReleaseYear = 2003,
@@ -288,6 +302,7 @@ namespace Assignment3.Migrations
                         {
                             Id = 10,
                             Director = "Chris Columbus",
+                            FranchiseId = 3,
                             Genre = "Comedy,Family",
                             Picture = "https://upload.wikimedia.org/wikipedia/en/7/76/Home_alone_poster.jpg",
                             ReleaseYear = 1990,
@@ -298,12 +313,211 @@ namespace Assignment3.Migrations
                         {
                             Id = 11,
                             Director = "Chris Columbus",
+                            FranchiseId = 3,
                             Genre = "Adventure,Comedy,Crime,Family",
                             Picture = "https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Home_Alone_2.jpg/220px-Home_Alone_2.jpg",
                             ReleaseYear = 1992,
                             Title = "Home Alone 2: Lost in New York",
                             Trailer = "https://www.youtube.com/watch?v=5h9VDUNtoto"
                         });
+                });
+
+            modelBuilder.Entity("CharacterMovie", b =>
+                {
+                    b.Property<int>("MoviesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CharactersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MoviesId", "CharactersId");
+
+                    b.HasIndex("CharactersId");
+
+                    b.ToTable("CharacterMovie");
+
+                    b.HasData(
+                        new
+                        {
+                            MoviesId = 1,
+                            CharactersId = 1
+                        },
+                        new
+                        {
+                            MoviesId = 1,
+                            CharactersId = 3
+                        },
+                        new
+                        {
+                            MoviesId = 2,
+                            CharactersId = 1
+                        },
+                        new
+                        {
+                            MoviesId = 2,
+                            CharactersId = 3
+                        },
+                        new
+                        {
+                            MoviesId = 3,
+                            CharactersId = 1
+                        },
+                        new
+                        {
+                            MoviesId = 3,
+                            CharactersId = 2
+                        },
+                        new
+                        {
+                            MoviesId = 3,
+                            CharactersId = 3
+                        },
+                        new
+                        {
+                            MoviesId = 4,
+                            CharactersId = 1
+                        },
+                        new
+                        {
+                            MoviesId = 4,
+                            CharactersId = 2
+                        },
+                        new
+                        {
+                            MoviesId = 4,
+                            CharactersId = 3
+                        },
+                        new
+                        {
+                            MoviesId = 5,
+                            CharactersId = 1
+                        },
+                        new
+                        {
+                            MoviesId = 5,
+                            CharactersId = 2
+                        },
+                        new
+                        {
+                            MoviesId = 5,
+                            CharactersId = 3
+                        },
+                        new
+                        {
+                            MoviesId = 6,
+                            CharactersId = 1
+                        },
+                        new
+                        {
+                            MoviesId = 6,
+                            CharactersId = 2
+                        },
+                        new
+                        {
+                            MoviesId = 6,
+                            CharactersId = 3
+                        },
+                        new
+                        {
+                            MoviesId = 7,
+                            CharactersId = 4
+                        },
+                        new
+                        {
+                            MoviesId = 7,
+                            CharactersId = 5
+                        },
+                        new
+                        {
+                            MoviesId = 7,
+                            CharactersId = 6
+                        },
+                        new
+                        {
+                            MoviesId = 8,
+                            CharactersId = 5
+                        },
+                        new
+                        {
+                            MoviesId = 8,
+                            CharactersId = 6
+                        },
+                        new
+                        {
+                            MoviesId = 9,
+                            CharactersId = 4
+                        },
+                        new
+                        {
+                            MoviesId = 9,
+                            CharactersId = 5
+                        },
+                        new
+                        {
+                            MoviesId = 9,
+                            CharactersId = 6
+                        },
+                        new
+                        {
+                            MoviesId = 10,
+                            CharactersId = 7
+                        },
+                        new
+                        {
+                            MoviesId = 10,
+                            CharactersId = 8
+                        },
+                        new
+                        {
+                            MoviesId = 10,
+                            CharactersId = 9
+                        },
+                        new
+                        {
+                            MoviesId = 11,
+                            CharactersId = 7
+                        },
+                        new
+                        {
+                            MoviesId = 11,
+                            CharactersId = 8
+                        },
+                        new
+                        {
+                            MoviesId = 11,
+                            CharactersId = 9
+                        });
+                });
+
+            modelBuilder.Entity("Assignment3.Models.Domain.Movie", b =>
+                {
+                    b.HasOne("Assignment3.Models.Domain.Franchise", "Franchise")
+                        .WithMany("Movies")
+                        .HasForeignKey("FranchiseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Franchise");
+                });
+
+            modelBuilder.Entity("CharacterMovie", b =>
+                {
+                    b.HasOne("Assignment3.Models.Domain.Character", null)
+                        .WithMany()
+                        .HasForeignKey("CharactersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Assignment3.Models.Domain.Movie", null)
+                        .WithMany()
+                        .HasForeignKey("MoviesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Assignment3.Models.Domain.Franchise", b =>
+                {
+                    b.Navigation("Movies");
                 });
 #pragma warning restore 612, 618
         }
