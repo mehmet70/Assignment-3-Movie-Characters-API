@@ -7,6 +7,7 @@ namespace Assignment3.Models
     {
         public DbSet<Character> Characters { get; set; }
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Franchise> Franchises { get; set; }
 
         public MovieCharacterDbContext(DbContextOptions options) : base(options)
         {
@@ -18,6 +19,7 @@ namespace Assignment3.Models
             #region Characters
 
             #region Star Wars
+
             modelBuilder.Entity<Character>().HasData(new Character
             {
                 Id = 1,
@@ -45,6 +47,7 @@ namespace Assignment3.Models
             #endregion
 
             # region The Lord of the Rings
+
             modelBuilder.Entity<Character>().HasData(new Character
             {
                 Id = 4,
@@ -71,6 +74,7 @@ namespace Assignment3.Models
             #endregion
 
             #region Home Alone
+
             modelBuilder.Entity<Character>().HasData(new Character
             {
                 Id = 7,
@@ -218,7 +222,7 @@ namespace Assignment3.Models
             {
                 Id = 11,
                 Title = "Home Alone 2: Lost in New York",
-                Genre = "Comedy,Family",
+                Genre = "Adventure,Comedy,Crime,Family",
                 ReleaseYear = 1992,
                 Director = "Chris Columbus",
                 Picture = "https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Home_Alone_2.jpg/220px-Home_Alone_2.jpg",
@@ -233,14 +237,43 @@ namespace Assignment3.Models
             #region Franchises
 
             #region Star Wars
+            
+            modelBuilder.Entity<Franchise>().HasData(new Franchise
+            {
+                Id = 1,
+                Name = "Star Wars",
+                Description = "Star Wars is an American epic space opera multimedia franchise created by George Lucas, which began with the eponymous 1977 film " +
+                "and quickly became a worldwide pop-culture phenomenon. The franchise has been expanded into various films and other media, including television series, " +
+                "video games, novels, comic books, theme park attractions, and themed areas, comprising an all-encompassing fictional universe."
+            });
 
             #endregion
 
             #region The Lord of the Rings
 
+            modelBuilder.Entity<Franchise>().HasData(new Franchise
+            {
+                Id = 2,
+                Name = "The Lord of the Rings",
+                Description = "The Lord of the Rings is a series of three epic fantasy adventure films directed by Peter Jackson, based on the novel written by J. R. R. Tolkien. " +
+                "The films are subtitled The Fellowship of the Ring (2001), The Two Towers (2002), and The Return of the King (2003). " +
+                "Produced and distributed by New Line Cinema with the co-production of WingNut Films, it is an international venture between New Zealand and the United States. " +
+                "The films feature an ensemble cast including Elijah Wood, Ian McKellen, Liv Tyler, Viggo Mortensen, Sean Astin, Cate Blanchett, John Rhys-Davies, " +
+                "Christopher Lee, Billy Boyd, Dominic Monaghan, Orlando Bloom, Hugo Weaving, Andy Serkis and Sean Bean."
+            });
+
             #endregion
 
             #region Home Alone
+
+            modelBuilder.Entity<Franchise>().HasData(new Franchise
+            {
+                Id = 3,
+                Name = "Home Alone",
+                Description = "Home Alone is a series of American Christmas family comedy films originally created by John Hughes, and directed by Chris Columbus (1 and 2), " +
+                "Raja Gosnell (3), Rod Daniel (4), Peter Hewitt (5), and Dan Mazer (6). The films revolve around the adventures surrounding children who find themselves alone " +
+                "during the holiday season and are faced with the challenge of defending their family's house or themselves from invading burglars and criminals."
+            });
 
             #endregion
 

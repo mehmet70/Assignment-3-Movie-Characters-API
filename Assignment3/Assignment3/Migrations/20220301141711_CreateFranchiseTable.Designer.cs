@@ -3,14 +3,16 @@ using Assignment3.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Assignment3.Migrations
 {
     [DbContext(typeof(MovieCharacterDbContext))]
-    partial class MovieCharacterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220301141711_CreateFranchiseTable")]
+    partial class CreateFranchiseTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,26 +138,6 @@ namespace Assignment3.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Franchises");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Star Wars is an American epic space opera multimedia franchise created by George Lucas, which began with the eponymous 1977 film and quickly became a worldwide pop-culture phenomenon. The franchise has been expanded into various films and other media, including television series, video games, novels, comic books, theme park attractions, and themed areas, comprising an all-encompassing fictional universe.",
-                            Name = "Star Wars"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "The Lord of the Rings is a series of three epic fantasy adventure films directed by Peter Jackson, based on the novel written by J. R. R. Tolkien. The films are subtitled The Fellowship of the Ring (2001), The Two Towers (2002), and The Return of the King (2003). Produced and distributed by New Line Cinema with the co-production of WingNut Films, it is an international venture between New Zealand and the United States. The films feature an ensemble cast including Elijah Wood, Ian McKellen, Liv Tyler, Viggo Mortensen, Sean Astin, Cate Blanchett, John Rhys-Davies, Christopher Lee, Billy Boyd, Dominic Monaghan, Orlando Bloom, Hugo Weaving, Andy Serkis and Sean Bean.",
-                            Name = "The Lord of the Rings"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Home Alone is a series of American Christmas family comedy films originally created by John Hughes, and directed by Chris Columbus (1 and 2), Raja Gosnell (3), Rod Daniel (4), Peter Hewitt (5), and Dan Mazer (6). The films revolve around the adventures surrounding children who find themselves alone during the holiday season and are faced with the challenge of defending their family's house or themselves from invading burglars and criminals.",
-                            Name = "Home Alone"
-                        });
                 });
 
             modelBuilder.Entity("Assignment3.Models.Domain.Movie", b =>
