@@ -11,17 +11,45 @@ namespace Assignment3
 {
     public class Program
     {
-        // TODO: Add character class
-        // TODO: Add migration
+        // TODO: Check nullability, URL, required etc.
+        // TODO: Seed character data
         // TODO: Add character controller
+        // TODO: Add character Get
+        // TODO: Add character GetById
+        // TODO: Add character Post
+        // TODO: Add character Put
+        // TODO: Add character Delete
+
+        // TODO: Repository pattern?
 
         // TODO: Add movie class
         // TODO: Add migration
+        // TODO: Check nullability, URL, required etc.
+        // TODO: Seed movie data
         // TODO: Add movie controller
-        
+        // TODO: Add character Get
+        // TODO: Add character GetById
+        // TODO: Add character Post
+        // TODO: Add character Put
+        // TODO: Add character Delete
+
         // TODO: Add franchise class
         // TODO: Add migration
+        // TODO: Check nullability, URL, required etc.
+        // TODO: Seed franchise data
         // TODO: Add franchise controller
+        // TODO: Add character Get
+        // TODO: Add character GetById
+        // TODO: Add character Post
+        // TODO: Add character Put
+        // TODO: Add character Delete
+
+        // TODO: Add character movie relationship
+        // TODO: Add update characters in movie
+        // TODO: Add movie franchise relationship
+        // TODO: Add update movies in franchise
+
+        // TODO: Add DTOs
 
         public static void Main(string[] args)
         {
