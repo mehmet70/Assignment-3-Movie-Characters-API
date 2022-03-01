@@ -11,13 +11,6 @@ namespace Assignment3
 {
     public class Program
     {
-        // TODO: Seed character data
-
-        // TODO: Repository pattern?
-
-        // TODO: Add movie class
-        // TODO: Add migration
-        // TODO: Check nullability, URL, required etc.
         // TODO: Seed movie data
         // TODO: Add movie controller
         // TODO: Add character Get
@@ -43,6 +36,8 @@ namespace Assignment3
         // TODO: Add update movies in franchise
 
         // TODO: Add DTOs
+
+        // TODO: Repository pattern?
 
         public static void Main(string[] args)
         {
