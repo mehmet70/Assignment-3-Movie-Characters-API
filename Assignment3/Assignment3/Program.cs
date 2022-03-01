@@ -11,6 +11,18 @@ namespace Assignment3
 {
     public class Program
     {
+        // TODO: Add character class
+        // TODO: Add migration
+        // TODO: Add character controller
+
+        // TODO: Add movie class
+        // TODO: Add migration
+        // TODO: Add movie controller
+        
+        // TODO: Add franchise class
+        // TODO: Add migration
+        // TODO: Add franchise controller
+
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
