@@ -6,7 +6,8 @@ We create an Entity Framework Code First workflow and an ASP.NET Core Web API in
 
 - [Name](#name)
 - [Description](#description)
-- [Getting started](#getting-started) 
+- [Getting started](#getting-started)
+- [Usage](#usage)
 - [Maintainers](#maintainers)
 
 ## Name
@@ -30,7 +31,9 @@ update-database
 ```
 This will create a database in LocalDb, used for development and seed some dummy data.
 
+## Usage
 
+To be added.
 
 ## Maintainers
 Mehmet Balci & Tiemar Mepschen
