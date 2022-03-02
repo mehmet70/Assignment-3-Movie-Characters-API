@@ -21,6 +21,6 @@ namespace Assignment3.Models.DTOs.Character
         public string Picture { get; set; }
 
         // Relationships
-        public List<int> Movies { get; set; }
+        //public List<int> Movies { get; set; }
     }
 }

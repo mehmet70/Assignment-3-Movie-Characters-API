@@ -12,6 +12,7 @@ namespace Assignment3
     public class Program
     {
         // TODO: Check Controllers
+        // Make everything JSON
         // TODO: Add [FromBody], [NotNullAttribute], [MaxLength(-, ErrorMessage=...)]?
 
         // TODO: Add documentation (swaggerdoc)

@@ -16,6 +16,6 @@ namespace Assignment3.Models.DTOs.Franchise
         public string Description { get; set; }
 
         // Relationships
-        public List<int> Movies { get; set; }
+        //public List<int> Movies { get; set; }
     }
 }

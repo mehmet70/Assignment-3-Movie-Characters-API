@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Assignment3.Models;
 using Assignment3.Models.Domain;
+using AutoMapper;
+using Assignment3.Models.DTOs.Character;
 
 namespace Assignment3.Controllers
 {
@@ -15,24 +17,29 @@ namespace Assignment3.Controllers
     public class CharacterController : ControllerBase
     {
         private readonly MovieCharacterDbContext _context;
+        private readonly IMapper _mapper;
 
-        public CharacterController(MovieCharacterDbContext context)
+        public CharacterController(MovieCharacterDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [ProducesResponseType(200)]
-        public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
+        public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetCharacters()
         {
             var characters = await _context.Characters.ToListAsync<Character>();
-            return Ok(characters);
+
+            var charactersToSend = _mapper.Map<List<CharacterReadDTO>>(characters);
+
+            return Ok(charactersToSend);
         }
 
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<Character>> GetCharacter(int id)
+        public async Task<ActionResult<CharacterReadDTO>> GetCharacter(int id)
         {
             var character = await _context.Characters.FindAsync(id);
 
@@ -41,7 +48,9 @@ namespace Assignment3.Controllers
                 return NotFound();
             }
 
-            return Ok(character);
+            CharacterReadDTO characterToSend = _mapper.Map<CharacterReadDTO>(character);
+
+            return Ok(characterToSend);
         }
 
         [HttpPut("{id}")]

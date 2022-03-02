@@ -1,5 +1,7 @@
 ﻿using Assignment3.Models;
 using Assignment3.Models.Domain;
+using Assignment3.Models.DTOs.Franchise;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,21 +16,26 @@ namespace Assignment3.Controllers
     public class FranchiseController : ControllerBase
     {
         private readonly MovieCharacterDbContext _context;
+        private readonly IMapper _mapper;
 
-        public FranchiseController(MovieCharacterDbContext context)
+        public FranchiseController(MovieCharacterDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Franchise>>> GetFranchises()
+        public async Task<ActionResult<IEnumerable<FranchiseReadDTO>>> GetFranchises()
         {
             var franchises = await _context.Franchises.ToListAsync();
-            return Ok(franchises);
+
+            var franchisesToSend = _mapper.Map<List<FranchiseReadDTO>>(franchises);
+
+            return Ok(franchisesToSend);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Franchise>> GetFranchise(int id)
+        public async Task<ActionResult<FranchiseReadDTO>> GetFranchise(int id)
         {
             var franchise = await _context.Franchises.FindAsync(id);
 
@@ -37,7 +44,9 @@ namespace Assignment3.Controllers
                 return NotFound();
             }
 
-            return Ok(franchise);
+            var franchiseToSend = _mapper.Map<FranchiseReadDTO>(franchise);
+
+            return Ok(franchiseToSend);
         }
 
         [HttpPut("{id}")]

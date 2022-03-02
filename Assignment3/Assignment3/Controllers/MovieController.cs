@@ -1,5 +1,7 @@
 ﻿using Assignment3.Models;
 using Assignment3.Models.Domain;
+using Assignment3.Models.DTOs.Movie;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,21 +17,26 @@ namespace Assignment3.Controllers
     public class MovieController : ControllerBase
     {
         private readonly MovieCharacterDbContext _context;
+        private readonly IMapper _mapper;
 
-        public MovieController(MovieCharacterDbContext context)
+        public MovieController(MovieCharacterDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Movie>>> GetMovies()
+        public async Task<ActionResult<IEnumerable<MovieReadDTO>>> GetMovies()
         {
             var movies = await _context.Movies.ToListAsync();
-            return Ok(movies);
+
+            var moviesToSend = _mapper.Map<List<MovieReadDTO>>(movies);
+
+            return Ok(moviesToSend);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Movie>> GetMovie(int id)
+        public async Task<ActionResult<MovieReadDTO>> GetMovie(int id)
         {
             var movie = await _context.Movies.FindAsync(id);
             
@@ -38,7 +45,9 @@ namespace Assignment3.Controllers
                 return NotFound();
             }
 
-            return Ok(movie);
+            var movieToSend = _mapper.Map<MovieReadDTO>(movie);
+
+            return Ok(movieToSend);
         }
 
         [HttpPut("{id}")]
