@@ -17,9 +17,7 @@ namespace Assignment3
         // TODO: Add documentation
         // TODO: Add can return...?
 
-        // TODO: Add character movie relationship
         // TODO: Add update characters in movie
-        // TODO: Add movie franchise relationship
         // TODO: Add update movies in franchise
 
         // TODO: Add DTOs
