@@ -12,15 +12,16 @@ namespace Assignment3
     public class Program
     {
         // TODO: Check Controllers
-        // TODO: Add [FromBody], [NotNullAttribute]?
+        // TODO: Add [FromBody], [NotNullAttribute], [MaxLength(-, ErrorMessage=...)]?
 
-        // TODO: Add documentation
+        // TODO: Add documentation (swaggerdoc)
         // TODO: Add can return...?
 
         // TODO: Add update characters in movie
         // TODO: Add update movies in franchise
 
-        // TODO: Add DTOs
+        // TODO: Add get characters in movie
+        // TODO: Add get movies in franchise
 
         // TODO: Repository pattern?
 

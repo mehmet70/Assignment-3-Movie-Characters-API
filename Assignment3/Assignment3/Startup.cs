@@ -30,11 +30,17 @@ namespace Assignment3
         {
 
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<MovieCharacterDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Assignment3", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "Movie Characters API",
+                    Version = "v1",
+                    Description = "A simple ASP.NET Web API to track characters, their movies and their franchises."
+
+                });
             });
         }
 

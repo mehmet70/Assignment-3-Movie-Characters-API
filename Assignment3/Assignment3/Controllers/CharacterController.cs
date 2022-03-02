@@ -22,13 +22,16 @@ namespace Assignment3.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
         {
-            var characters = await _context.Characters.ToListAsync();
+            var characters = await _context.Characters.ToListAsync<Character>();
             return Ok(characters);
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult<Character>> GetCharacter(int id)
         {
             var character = await _context.Characters.FindAsync(id);
@@ -42,6 +45,9 @@ namespace Assignment3.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> PutCharacter(int id, Character character)
         {
             if (id != character.Id)
@@ -71,6 +77,7 @@ namespace Assignment3.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(201)]
         public async Task<ActionResult<Character>> PostCharacter(Character character)
         {
             _context.Characters.Add(character);
@@ -80,7 +87,9 @@ namespace Assignment3.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCharacter(int id)
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> DeleteCharacter(int id)
         {
             var character = await _context.Characters.FindAsync(id);
             if (character == null)
