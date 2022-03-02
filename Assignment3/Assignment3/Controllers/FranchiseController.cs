@@ -78,12 +78,17 @@ namespace Assignment3.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Franchise>> PostFranchise([FromBody] Franchise franchise)
+        public async Task<ActionResult<FranchiseReadDTO>> PostFranchise([FromBody] FranchiseCreateDTO franchise)
         {
-            _context.Franchises.Add(franchise);
+            var domainFranchise = _mapper.Map<Franchise>(franchise);
+
+            _context.Franchises.Add(domainFranchise);
+            
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFranchise", new { id = franchise.Id }, franchise);
+            var franchiseToSend = _mapper.Map<FranchiseReadDTO>(domainFranchise);
+
+            return CreatedAtAction("GetFranchise", new { id = domainFranchise.Id }, franchiseToSend);
         }
 
         [HttpDelete("{id}")]

@@ -8,9 +8,12 @@ namespace Assignment3.Profiles
     {
         public CharacterProfile()
         {
-            CreateMap<Character, CharacterCreateDTO>();
-            CreateMap<Character, CharacterReadDTO>();
-            CreateMap<Character, CharacterUpdateDTO>();
+            CreateMap<Character, CharacterCreateDTO>()
+                .ReverseMap();
+            CreateMap<Character, CharacterReadDTO>()
+                .ReverseMap();
+            CreateMap<Character, CharacterUpdateDTO>()
+                .ReverseMap();
         }
     }
 }

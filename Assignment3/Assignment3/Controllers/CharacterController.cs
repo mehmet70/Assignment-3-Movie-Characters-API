@@ -87,12 +87,17 @@ namespace Assignment3.Controllers
 
         [HttpPost]
         [ProducesResponseType(201)]
-        public async Task<ActionResult<Character>> PostCharacter(Character character)
+        public async Task<ActionResult<CharacterReadDTO>> PostCharacter([FromBody] CharacterCreateDTO character)
         {
-            _context.Characters.Add(character);
+            var domainCharacter = _mapper.Map<Character>(character);
+
+            _context.Characters.Add(domainCharacter);
+
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCharacter", new { id = character.Id }, character);
+            var characterToSend = _mapper.Map<CharacterReadDTO>(domainCharacter);
+
+            return CreatedAtAction("GetCharacter", new { id = domainCharacter.Id }, characterToSend);
         }
 
         [HttpDelete("{id}")]

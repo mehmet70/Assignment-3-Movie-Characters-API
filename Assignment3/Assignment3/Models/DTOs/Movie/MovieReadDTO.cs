@@ -27,6 +27,6 @@ namespace Assignment3.Models.DTOs.Movie
         // Relationships
         //public List<int> Characters { get; set; }
 
-        public int FranchiseId { get; set; }
+        //public int Franchise { get; set; }
     }
 }

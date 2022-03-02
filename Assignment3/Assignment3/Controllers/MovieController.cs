@@ -80,12 +80,17 @@ namespace Assignment3.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Movie>> PostMovie([FromBody] Movie movie)
+        public async Task<ActionResult<MovieReadDTO>> PostMovie([FromBody] MovieCreateDTO movie)
         {
-            _context.Movies.Add(movie);
+            var domainMovie = _mapper.Map<Movie>(movie);
+
+            _context.Movies.Add(domainMovie);
+
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMovie", new { movie.Id }, movie);
+            var movieToSend = _mapper.Map<MovieReadDTO>(domainMovie);
+
+            return CreatedAtAction("GetMovie", new { id = domainMovie.Id }, movieToSend);
         }
 
         [HttpDelete("{id}")]

@@ -11,6 +11,9 @@ namespace Assignment3
 {
     public class Program
     {
+        // TODO: Fix movie franchiseid
+        // TODO: Foreign keys can be null
+
         // TODO: Check Controllers
         // Make everything JSON
         // TODO: Add [FromBody], [NotNullAttribute], [MaxLength(-, ErrorMessage=...)]?

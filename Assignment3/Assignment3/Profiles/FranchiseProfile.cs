@@ -8,9 +8,12 @@ namespace Assignment3.Profiles
     {
         public FranchiseProfile()
         {
-            CreateMap<Franchise, FranchiseCreateDTO>();
-            CreateMap<Franchise, FranchiseReadDTO>();
-            CreateMap<Franchise, FranchiseUpdateDTO>();
+            CreateMap<Franchise, FranchiseCreateDTO>()
+                .ReverseMap();
+            CreateMap<Franchise, FranchiseReadDTO>()
+                .ReverseMap();
+            CreateMap<Franchise, FranchiseUpdateDTO>()
+                .ReverseMap();
         }
     }
 }

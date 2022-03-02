@@ -8,9 +8,12 @@ namespace Assignment3.Profiles
     {
         public MovieProfile()
         {
-            CreateMap<Movie, MovieCreateDTO>();
-            CreateMap<Movie, MovieReadDTO>();
-            CreateMap<Movie, MovieUpdateDTO>();
+            CreateMap<Movie, MovieCreateDTO>()
+                .ReverseMap();
+            CreateMap<Movie, MovieReadDTO>()
+                .ReverseMap();
+            CreateMap<Movie, MovieUpdateDTO>()
+                .ReverseMap();
         }
     }
 }
