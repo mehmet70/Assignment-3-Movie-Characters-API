@@ -29,6 +29,8 @@ namespace Assignment3.Controllers
             _mapper = mapper;
         }
 
+        #region Get
+
         /// <summary>
         /// Get all movies from the database.
         /// </summary>
@@ -87,6 +89,10 @@ namespace Assignment3.Controllers
 
             return Ok(charactersToSend);
         }
+
+        #endregion
+
+        #region Put
 
         /// <summary>
         /// Updates a movie in the database.
@@ -165,6 +171,10 @@ namespace Assignment3.Controllers
             return NoContent();
         }
 
+        #endregion
+
+        #region Post
+
         /// <summary>
         /// Adds a new movie to the database
         /// </summary>
@@ -184,6 +194,10 @@ namespace Assignment3.Controllers
 
             return CreatedAtAction("GetMovie", new { id = domainMovie.Id }, movieToSend);
         }
+
+        #endregion
+
+        #region Delete
 
         /// <summary>
         /// Deletes a movie from the database.
@@ -206,6 +220,8 @@ namespace Assignment3.Controllers
 
             return NoContent();
         }
+
+        #endregion
 
         private bool MoviesExists(int id)
         {

@@ -29,6 +29,8 @@ namespace Assignment3.Controllers
             _mapper = mapper;
         }
 
+        #region Get
+
         /// <summary>
         /// Get all franchises in the database.
         /// </summary>
@@ -114,6 +116,10 @@ namespace Assignment3.Controllers
             return Ok(charactersToSend);
         }
 
+        #endregion
+
+        #region Put
+
         /// <summary>
         /// Updates a franchise in the database.
         /// </summary>
@@ -190,6 +196,10 @@ namespace Assignment3.Controllers
             return NoContent();
         }
 
+        #endregion
+
+        #region Post
+
         /// <summary>
         /// Adds a new franchise to the database.
         /// </summary>
@@ -209,6 +219,10 @@ namespace Assignment3.Controllers
 
             return CreatedAtAction("GetFranchise", new { id = domainFranchise.Id }, franchiseToSend);
         }
+
+        #endregion
+
+        #region Delete
 
         /// <summary>
         /// Deletes a franchise from the database.
@@ -231,6 +245,8 @@ namespace Assignment3.Controllers
 
             return NoContent();
         }
+
+        #endregion
 
         private bool FranchiseExists(int id)
         {

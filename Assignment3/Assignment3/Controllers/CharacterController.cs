@@ -28,6 +28,8 @@ namespace Assignment3.Controllers
             _mapper = mapper;
         }
 
+        #region Get
+        
         /// <summary>
         /// Gets all characters from the database.
         /// </summary>
@@ -64,6 +66,10 @@ namespace Assignment3.Controllers
 
             return Ok(characterToSend);
         }
+
+        #endregion
+
+        #region Put
 
         /// <summary>
         /// Updates a character in the database.
@@ -105,6 +111,10 @@ namespace Assignment3.Controllers
             return NoContent();
         }
 
+        #endregion
+
+        #region Post
+
         /// <summary>
         /// Adds a new character to the database.
         /// </summary>
@@ -124,6 +134,10 @@ namespace Assignment3.Controllers
 
             return CreatedAtAction("GetCharacter", new { id = domainCharacter.Id }, characterToSend);
         }
+
+        #endregion
+
+        #region Delete
 
         /// <summary>
         /// Deletes a character from the database.
@@ -146,6 +160,8 @@ namespace Assignment3.Controllers
 
             return NoContent();
         }
+
+        #endregion
 
         private bool CharacterExists(int id)
         {
