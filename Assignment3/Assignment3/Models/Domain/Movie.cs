@@ -27,7 +27,7 @@ namespace Assignment3.Models.Domain
         // Relationships
         public ICollection<Character> Characters { get; set; }
 
-        public int FranchiseId { get; set; }
+        public int? FranchiseId { get; set; }
         public Franchise Franchise { get; set; }
     }
 }

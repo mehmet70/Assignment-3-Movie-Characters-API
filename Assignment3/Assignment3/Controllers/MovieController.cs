@@ -51,14 +51,16 @@ namespace Assignment3.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Movie>> PutMovie(int id, [FromBody] Movie movie)
+        public async Task<ActionResult> PutMovie(int id, [FromBody] MovieUpdateDTO movie)
         {
             if (id != movie.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(movie).State = EntityState.Modified;
+            var domainMovie = _mapper.Map<Movie>(movie);
+
+            _context.Entry(domainMovie).State = EntityState.Modified;
 
             try
             {

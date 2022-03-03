@@ -57,14 +57,16 @@ namespace Assignment3.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> PutCharacter(int id, Character character)
+        public async Task<IActionResult> PutCharacter(int id, CharacterUpdateDTO character)
         {
             if (id != character.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(character).State = EntityState.Modified;
+            var domainCharacter = _mapper.Map<Character>(character);
+
+            _context.Entry(domainCharacter).State = EntityState.Modified;
 
             try
             {

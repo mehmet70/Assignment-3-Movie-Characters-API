@@ -13,6 +13,7 @@ namespace Assignment3
     {
         // TODO: Fix movie franchiseid
         // TODO: Foreign keys can be null
+        // TODO: Navigation null on delete
 
         // TODO: Check Controllers
         // Make everything JSON

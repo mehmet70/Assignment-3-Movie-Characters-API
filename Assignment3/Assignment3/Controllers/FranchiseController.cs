@@ -50,14 +50,16 @@ namespace Assignment3.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Franchise>> PutFranchise(int id, [FromBody] Franchise franchise)
+        public async Task<ActionResult> PutFranchise(int id, [FromBody] FranchiseUpdateDTO franchise)
         {
             if (id != franchise.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(franchise).State = EntityState.Modified;
+            var domainFranchise = _mapper.Map<Franchise>(franchise);
+
+            _context.Entry(domainFranchise).State = EntityState.Modified;
 
             try
             {
