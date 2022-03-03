@@ -11,8 +11,6 @@ namespace Assignment3
 {
     public class Program
     {
-        // TODO: Add automapper relationships
-        // TODO: Foreign keys can be null
         // TODO: Navigation null on delete
 
         // TODO: Check Controllers
@@ -23,6 +21,8 @@ namespace Assignment3
 
         // TODO: Add get characters in movie
         // TODO: Add get movies in franchise
+
+        // TODO: Summary methods
 
         // TODO: Redo the migrations
 

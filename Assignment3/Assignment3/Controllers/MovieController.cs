@@ -1,5 +1,6 @@
 ﻿using Assignment3.Models;
 using Assignment3.Models.Domain;
+using Assignment3.Models.DTOs.Character;
 using Assignment3.Models.DTOs.Movie;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
@@ -47,14 +48,14 @@ namespace Assignment3.Controllers
         /// Get a specific movie from the database by ID.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>P</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public async Task<ActionResult<MovieReadDTO>> GetMovie(int id)
         {
             var movie = await _context.Movies.Include(m => m.Characters).FirstOrDefaultAsync(m => m.Id == id);
-            
+
             if (movie == null)
             {
                 return NotFound();
@@ -64,7 +65,29 @@ namespace Assignment3.Controllers
 
             return Ok(movieToSend);
         }
-        
+
+        /// <summary>
+        /// Gets all characters from a specific movie specified by ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}/characters")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<List<CharacterReadDTO>>> GetCharactersInMovie(int id)
+        {
+            var movie = await _context.Movies.Include(m => m.Characters).ThenInclude(c => c.Movies).SingleOrDefaultAsync(m => m.Id == id);
+
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            var charactersToSend = _mapper.Map<List<CharacterReadDTO>>(movie.Characters);
+
+            return Ok(charactersToSend);
+        }
+
         /// <summary>
         /// Updates a movie in the database.
         /// </summary>

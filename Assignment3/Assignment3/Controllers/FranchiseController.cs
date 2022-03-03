@@ -1,6 +1,7 @@
 ﻿using Assignment3.Models;
 using Assignment3.Models.Domain;
 using Assignment3.Models.DTOs.Franchise;
+using Assignment3.Models.DTOs.Movie;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -62,6 +63,28 @@ namespace Assignment3.Controllers
             var franchiseToSend = _mapper.Map<FranchiseReadDTO>(franchise);
 
             return Ok(franchiseToSend);
+        }
+
+        /// <summary>
+        /// Gets all movies from a specific franchise specified by ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}/movies")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<List<MovieReadDTO>>> GetMoviesInFranchise(int id)
+        {
+            var franchise = await _context.Franchises.Include(f => f.Movies).FirstOrDefaultAsync(f => f.Id == id);
+
+            if (franchise == null)
+            {
+                return NotFound();
+            }
+
+            var moviesToSend = _mapper.Map<List<MovieReadDTO>>(franchise.Movies);
+
+            return Ok(moviesToSend);
         }
 
         /// <summary>
