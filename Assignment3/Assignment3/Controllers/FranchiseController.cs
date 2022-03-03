@@ -35,7 +35,7 @@ namespace Assignment3.Controllers
         [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<FranchiseReadDTO>>> GetFranchises()
         {
-            var franchises = await _context.Franchises.ToListAsync();
+            var franchises = await _context.Franchises.Include(f => f.Movies).ToListAsync();
 
             var franchisesToSend = _mapper.Map<List<FranchiseReadDTO>>(franchises);
 
@@ -52,7 +52,7 @@ namespace Assignment3.Controllers
         [ProducesResponseType(404)]
         public async Task<ActionResult<FranchiseReadDTO>> GetFranchise(int id)
         {
-            var franchise = await _context.Franchises.FindAsync(id);
+            var franchise = await _context.Franchises.Include(f => f.Movies).FirstOrDefaultAsync(f => f.Id == id);
 
             if (franchise == null)
             {

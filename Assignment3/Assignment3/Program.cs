@@ -11,14 +11,12 @@ namespace Assignment3
 {
     public class Program
     {
-        // TODO: Fix movie franchiseid
+        // TODO: Add automapper relationships
         // TODO: Foreign keys can be null
         // TODO: Navigation null on delete
 
         // TODO: Check Controllers
         // TODO: Add [NotNullAttribute], [MaxLength(-, ErrorMessage=...)]?
-
-        // TODO: Add documentation (swaggerdoc)
 
         // TODO: Add update characters in movie
         // TODO: Add update movies in franchise
@@ -26,7 +24,7 @@ namespace Assignment3
         // TODO: Add get characters in movie
         // TODO: Add get movies in franchise
 
-        // TODO: Repository pattern?
+        // TODO: Redo the migrations
 
         public static void Main(string[] args)
         {

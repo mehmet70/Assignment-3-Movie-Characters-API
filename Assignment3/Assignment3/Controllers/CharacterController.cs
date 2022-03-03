@@ -36,7 +36,7 @@ namespace Assignment3.Controllers
         [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetCharacters()
         {
-            var characters = await _context.Characters.ToListAsync<Character>();
+            var characters = await _context.Characters.Include(c => c.Movies).ToListAsync<Character>();
 
             var charactersToSend = _mapper.Map<List<CharacterReadDTO>>(characters);
 
@@ -53,7 +53,7 @@ namespace Assignment3.Controllers
         [ProducesResponseType(404)]
         public async Task<ActionResult<CharacterReadDTO>> GetCharacter(int id)
         {
-            var character = await _context.Characters.FindAsync(id);
+            var character = await _context.Characters.Include(c => c.Movies).FirstOrDefaultAsync(c => c.Id == id);
 
             if (character == null)
             {

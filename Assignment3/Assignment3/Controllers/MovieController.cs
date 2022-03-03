@@ -36,7 +36,7 @@ namespace Assignment3.Controllers
         [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<MovieReadDTO>>> GetMovies()
         {
-            var movies = await _context.Movies.ToListAsync();
+            var movies = await _context.Movies.Include(m => m.Characters).ToListAsync();
 
             var moviesToSend = _mapper.Map<List<MovieReadDTO>>(movies);
 
@@ -53,7 +53,7 @@ namespace Assignment3.Controllers
         [ProducesResponseType(404)]
         public async Task<ActionResult<MovieReadDTO>> GetMovie(int id)
         {
-            var movie = await _context.Movies.FindAsync(id);
+            var movie = await _context.Movies.Include(m => m.Characters).FirstOrDefaultAsync(m => m.Id == id);
             
             if (movie == null)
             {
