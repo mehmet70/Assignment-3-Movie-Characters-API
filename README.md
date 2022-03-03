@@ -31,9 +31,7 @@ update-database
 ```
 This will create a database in LocalDb, used for development and seed some dummy data.
 
-## Usage
-
-To be added.
+Run IIS Server to view the Swagger documentation and try out the methods.
 
 ## Maintainers
 Mehmet Balci & Tiemar Mepschen
