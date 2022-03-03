@@ -1,5 +1,6 @@
 ﻿using Assignment3.Models;
 using Assignment3.Models.Domain;
+using Assignment3.Models.DTOs.Character;
 using Assignment3.Models.DTOs.Franchise;
 using Assignment3.Models.DTOs.Movie;
 using AutoMapper;
@@ -88,6 +89,32 @@ namespace Assignment3.Controllers
         }
 
         /// <summary>
+        /// Gets all characters from a specific franchise specified by ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}/characters")]
+        public async Task<ActionResult<CharacterReadDTO>> GetCharactersInFranchise(int id)
+        {
+            var franchise = await _context.Franchises.Include(f => f.Movies).ThenInclude(m => m.Characters).FirstOrDefaultAsync(f => f.Id == id);
+
+            if (franchise == null)
+            {
+                return NotFound();
+            }
+
+            List<Character> characters = new List<Character>();
+            foreach (var movie in franchise.Movies)
+            {
+                characters.AddRange(movie.Characters);
+            }
+
+            var charactersToSend = _mapper.Map<List<CharacterReadDTO>>(characters.Distinct()).OrderBy(c => c.Id);
+
+            return Ok(charactersToSend);
+        }
+
+        /// <summary>
         /// Updates a franchise in the database.
         /// </summary>
         /// <param name="id"></param>
@@ -123,6 +150,43 @@ namespace Assignment3.Controllers
                     throw;
                 }
             }
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Updates the movies in a franchise.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="movieIds"></param>
+        /// <returns></returns>
+        [HttpPut("{id}/movies")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> UpdateMoviesInFranchise(int id, [FromBody] List<int> movieIds)
+        {
+            var franchise = await _context.Franchises.Include(f => f.Movies).FirstOrDefaultAsync(f => f.Id == id);
+
+            if (franchise == null)
+            {
+                return NotFound();
+            }
+
+            franchise.Movies = new List<Movie>();
+            
+            foreach (var movieId in movieIds)
+            {
+                var movie = await _context.Movies.FindAsync(movieId);
+
+                if (movie == null)
+                {
+                    return NotFound();
+                }
+
+                franchise.Movies.Add(movie);
+            }
+            
+            await _context.SaveChangesAsync();
+            
             return NoContent();
         }
 

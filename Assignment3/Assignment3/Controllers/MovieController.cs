@@ -76,7 +76,7 @@ namespace Assignment3.Controllers
         [ProducesResponseType(404)]
         public async Task<ActionResult<List<CharacterReadDTO>>> GetCharactersInMovie(int id)
         {
-            var movie = await _context.Movies.Include(m => m.Characters).ThenInclude(c => c.Movies).SingleOrDefaultAsync(m => m.Id == id);
+            var movie = await _context.Movies.Include(m => m.Characters).ThenInclude(c => c.Movies).FirstOrDefaultAsync(m => m.Id == id);
 
             if (movie == null)
             {
@@ -124,6 +124,43 @@ namespace Assignment3.Controllers
                     throw;
                 }
             }
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Updates the characters in a movie.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="characterIds"></param>
+        /// <returns></returns>
+        [HttpPut("{id}/characters")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult> UpdateCharactersInMovie(int id, [FromBody] List<int> characterIds)
+        {
+            var movie = await _context.Movies.Include(m => m.Characters).FirstOrDefaultAsync(m => m.Id == id);
+
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            movie.Characters = new List<Character>();
+
+            foreach (var characterId in characterIds)
+            {
+                var character = await _context.Characters.FindAsync(characterId);
+
+                if (character == null)
+                {
+                    return NotFound();
+                }
+
+                movie.Characters.Add(character);
+            }
+
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }

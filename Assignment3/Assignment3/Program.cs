@@ -15,14 +15,11 @@ namespace Assignment3
 
         // TODO: Check Controllers
         // TODO: Add [NotNullAttribute], [MaxLength(-, ErrorMessage=...)]?
+        // NotFound(); Message?
 
-        // TODO: Add update characters in movie
-        // TODO: Add update movies in franchise
+        // TODO: Summary methods, add returns
 
-        // TODO: Add get characters in movie
-        // TODO: Add get movies in franchise
-
-        // TODO: Summary methods
+        // TODO: Database async await (only when accessing database)
 
         // TODO: Redo the migrations
 
