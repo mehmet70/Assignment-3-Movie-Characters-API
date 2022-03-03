@@ -8,12 +8,15 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 
 namespace Assignment3.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Produces(MediaTypeNames.Application.Json)]
+    [Consumes(MediaTypeNames.Application.Json)]
     public class MovieController : ControllerBase
     {
         private readonly MovieCharacterDbContext _context;
@@ -25,7 +28,12 @@ namespace Assignment3.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Get all movies from the database.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<MovieReadDTO>>> GetMovies()
         {
             var movies = await _context.Movies.ToListAsync();
@@ -35,7 +43,14 @@ namespace Assignment3.Controllers
             return Ok(moviesToSend);
         }
 
+        /// <summary>
+        /// Get a specific movie from the database by ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult<MovieReadDTO>> GetMovie(int id)
         {
             var movie = await _context.Movies.FindAsync(id);
@@ -49,8 +64,17 @@ namespace Assignment3.Controllers
 
             return Ok(movieToSend);
         }
-
+        
+        /// <summary>
+        /// Updates a movie in the database.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="movie"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult> PutMovie(int id, [FromBody] MovieUpdateDTO movie)
         {
             if (id != movie.Id)
@@ -81,7 +105,13 @@ namespace Assignment3.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adds a new movie to the database
+        /// </summary>
+        /// <param name="movie"></param>
+        /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(201)]
         public async Task<ActionResult<MovieReadDTO>> PostMovie([FromBody] MovieCreateDTO movie)
         {
             var domainMovie = _mapper.Map<Movie>(movie);
@@ -95,7 +125,14 @@ namespace Assignment3.Controllers
             return CreatedAtAction("GetMovie", new { id = domainMovie.Id }, movieToSend);
         }
 
+        /// <summary>
+        /// Deletes a movie from the database.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult> DeleteMovie(int id)
         {
             var movie = await _context.Movies.FindAsync(id);

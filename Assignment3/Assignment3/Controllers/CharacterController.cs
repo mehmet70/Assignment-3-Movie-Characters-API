@@ -9,11 +9,14 @@ using Assignment3.Models;
 using Assignment3.Models.Domain;
 using AutoMapper;
 using Assignment3.Models.DTOs.Character;
+using System.Net.Mime;
 
 namespace Assignment3.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Produces(MediaTypeNames.Application.Json)]
+    [Consumes(MediaTypeNames.Application.Json)]
     public class CharacterController : ControllerBase
     {
         private readonly MovieCharacterDbContext _context;
@@ -25,6 +28,10 @@ namespace Assignment3.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Gets all characters from the database.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetCharacters()
@@ -36,6 +43,11 @@ namespace Assignment3.Controllers
             return Ok(charactersToSend);
         }
 
+        /// <summary>
+        /// Get a specific character from the database by ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -53,11 +65,17 @@ namespace Assignment3.Controllers
             return Ok(characterToSend);
         }
 
+        /// <summary>
+        /// Updates a character in the database.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="character"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public async Task<IActionResult> PutCharacter(int id, CharacterUpdateDTO character)
+        public async Task<IActionResult> PutCharacter(int id, [FromBody] CharacterUpdateDTO character)
         {
             if (id != character.Id)
             {
@@ -87,6 +105,11 @@ namespace Assignment3.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adds a new character to the database.
+        /// </summary>
+        /// <param name="character"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(201)]
         public async Task<ActionResult<CharacterReadDTO>> PostCharacter([FromBody] CharacterCreateDTO character)
@@ -102,6 +125,11 @@ namespace Assignment3.Controllers
             return CreatedAtAction("GetCharacter", new { id = domainCharacter.Id }, characterToSend);
         }
 
+        /// <summary>
+        /// Deletes a character from the database.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]

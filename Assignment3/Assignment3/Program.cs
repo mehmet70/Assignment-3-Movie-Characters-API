@@ -16,11 +16,9 @@ namespace Assignment3
         // TODO: Navigation null on delete
 
         // TODO: Check Controllers
-        // Make everything JSON
-        // TODO: Add [FromBody], [NotNullAttribute], [MaxLength(-, ErrorMessage=...)]?
+        // TODO: Add [NotNullAttribute], [MaxLength(-, ErrorMessage=...)]?
 
         // TODO: Add documentation (swaggerdoc)
-        // TODO: Add can return...?
 
         // TODO: Add update characters in movie
         // TODO: Add update movies in franchise
