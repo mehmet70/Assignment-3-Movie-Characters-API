@@ -14,19 +14,19 @@ namespace Assignment3.Models.DTOs.Movie
         public string Title { get; set; }
         [MaxLength(200)]
         public string Genre { get; set; }
-        public int ReleaseYear { get; set; }
+        public int? ReleaseYear { get; set; }
         [MaxLength(100)]
         public string Director { get; set; }
         [Url]
-        [MaxLength(300)]
+        [MaxLength(500)]
         public string Picture { get; set; }
         [Url]
-        [MaxLength(300)]
+        [MaxLength(500)]
         public string Trailer { get; set; }
 
         // Relationships
         public List<int> Characters { get; set; }
 
-        public int FranchiseId { get; set; }
+        public int? FranchiseId { get; set; }
     }
 }

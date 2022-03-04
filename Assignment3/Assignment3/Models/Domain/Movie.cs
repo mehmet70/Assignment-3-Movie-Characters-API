@@ -14,7 +14,7 @@ namespace Assignment3.Models.Domain
         public string Title { get; set; }
         [MaxLength(200)]
         public string Genre { get; set; }
-        public int ReleaseYear { get; set; }
+        public int? ReleaseYear { get; set; }
         [MaxLength(100)]
         public string Director { get; set; }
         [Url]

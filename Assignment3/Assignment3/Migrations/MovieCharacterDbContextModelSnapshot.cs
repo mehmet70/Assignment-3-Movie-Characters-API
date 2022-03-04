@@ -31,8 +31,8 @@ namespace Assignment3.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Gender")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -40,8 +40,8 @@ namespace Assignment3.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Picture")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
 
@@ -178,8 +178,8 @@ namespace Assignment3.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Picture")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int>("ReleaseYear")
                         .HasColumnType("int");
@@ -190,8 +190,8 @@ namespace Assignment3.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Trailer")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
 

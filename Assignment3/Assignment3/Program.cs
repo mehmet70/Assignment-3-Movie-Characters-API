@@ -11,8 +11,7 @@ namespace Assignment3
 {
     public class Program
     {
-        // TODO: Test everything again
-        
+        // TODO: Extra DTO for reporting characters in a franchise?
         // TODO: Redo the migrations
 
         public static void Main(string[] args)

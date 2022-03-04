@@ -211,6 +211,7 @@ namespace Assignment3.Controllers
         public async Task<ActionResult> DeleteMovie(int id)
         {
             var movie = await _context.Movies.FindAsync(id);
+
             if (movie == null)
             {
                 return NotFound();
