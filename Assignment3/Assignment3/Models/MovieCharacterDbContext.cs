@@ -292,7 +292,7 @@ namespace Assignment3.Models
 
             #endregion
 
-
+            
             #region Many to many seeding
 
             modelBuilder.Entity<Movie>()
@@ -345,7 +345,7 @@ namespace Assignment3.Models
                     });
 
             #endregion
-
+        
         }
     }
 }

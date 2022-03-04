@@ -225,6 +225,11 @@ namespace Assignment3.Controllers
 
         #endregion
 
+        /// <summary>
+        /// Checks if a movie exists in the database.
+        /// </summary>
+        /// <param name="id">An integer representing the movie ID.</param>
+        /// <returns>A boolean indicating whether the movie exists in the database.</returns>
         private bool MoviesExists(int id)
         {
             return _context.Movies.Any(e => e.Id == id);

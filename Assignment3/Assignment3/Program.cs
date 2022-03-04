@@ -11,9 +11,6 @@ namespace Assignment3
 {
     public class Program
     {
-        // TODO: Extra DTO for reporting characters in a franchise?
-        // TODO: Redo the migrations
-
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();

@@ -164,6 +164,11 @@ namespace Assignment3.Controllers
 
         #endregion
 
+        /// <summary>
+        /// Checks if a character exists in the database.
+        /// </summary>
+        /// <param name="id">An integer representing the charachter ID.</param>
+        /// <returns>A boolean indicating whether the character exists in the database.</returns>
         private bool CharacterExists(int id)
         {
             return _context.Characters.Any(e => e.Id == id);
