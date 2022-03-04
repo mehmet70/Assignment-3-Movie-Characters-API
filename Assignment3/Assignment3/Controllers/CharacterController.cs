@@ -149,7 +149,7 @@ namespace Assignment3.Controllers
         [ProducesResponseType(404)]
         public async Task<ActionResult> DeleteCharacter(int id)
         {
-            var character = await _context.Characters.FindAsync(id);
+            var character = await _context.Characters.Find(id);
             if (character == null)
             {
                 return NotFound();

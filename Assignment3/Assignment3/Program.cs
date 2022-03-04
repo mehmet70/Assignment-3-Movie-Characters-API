@@ -12,6 +12,7 @@ namespace Assignment3
     public class Program
     {
         // TODO: Navigation null on delete
+        // TODO: FirstOrDefault change back
 
         // TODO: Check Controllers
         // TODO: Add [NotNullAttribute], [MaxLength(-, ErrorMessage=...)]?

@@ -234,7 +234,7 @@ namespace Assignment3.Controllers
         [ProducesResponseType(404)]
         public async Task<ActionResult> DeleteFranchise(int id)
         {
-            var franchise = await _context.Franchises.FindAsync(id);
+            var franchise = await _context.Franchises.Include(f => f.Movies).FirstOrDefaultAsync(f => f.Id == id);
             if (franchise == null)
             {
                 return NotFound();
