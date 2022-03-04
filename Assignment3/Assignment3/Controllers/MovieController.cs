@@ -34,7 +34,7 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Get all movies from the database.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A list of all movies in the database and a responsetype indicating success.</returns>
         [HttpGet]
         [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<MovieReadDTO>>> GetMovies()
@@ -49,8 +49,8 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Get a specific movie from the database by ID.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns>P</returns>
+        /// <param name="id">Movie ID</param>
+        /// <returns>A movie from the database and a responsetype indicating whether the movie was found.</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -71,8 +71,8 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Gets all characters from a specific movie specified by ID.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Movie ID</param>
+        /// <returns>A list of characters from the database and a responsetype indicating success.</returns>
         [HttpGet("{id}/characters")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -97,9 +97,9 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Updates a movie in the database.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="movie"></param>
-        /// <returns></returns>
+        /// <param name="id">Movie ID</param>
+        /// <param name="movie">The movie data to update.</param>
+        /// <returns>A responsetype indicating success and whether the movie was found.</returns>
         [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -137,9 +137,9 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Updates the characters in a movie.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="characterIds"></param>
-        /// <returns></returns>
+        /// <param name="id">Movie ID</param>
+        /// <param name="characterIds">The IDs of characters to update in the movie.</param>
+        /// <returns>A responsetype indicating success and whether the movie and characters were found.</returns>
         [HttpPut("{id}/characters")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
@@ -152,6 +152,7 @@ namespace Assignment3.Controllers
                 return NotFound();
             }
 
+            // Update the characters in the movie
             movie.Characters = new List<Character>();
 
             foreach (var characterId in characterIds)
@@ -178,8 +179,8 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Adds a new movie to the database
         /// </summary>
-        /// <param name="movie"></param>
-        /// <returns></returns>
+        /// <param name="movie">The movie data to add to the database.</param>
+        /// <returns>A movie ID, movie data and a responsetype indicating success.</returns>
         [HttpPost]
         [ProducesResponseType(201)]
         public async Task<ActionResult<MovieReadDTO>> PostMovie([FromBody] MovieCreateDTO movie)
@@ -202,8 +203,8 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Deletes a movie from the database.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Movie ID</param>
+        /// <returns>A responsetype indicating success and whether the movie was found.</returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]

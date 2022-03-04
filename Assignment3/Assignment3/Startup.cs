@@ -20,7 +20,6 @@ namespace Assignment3
 {
     public class Startup
     {
-        private object xmlFilename;
 
         public Startup(IConfiguration configuration)
         {

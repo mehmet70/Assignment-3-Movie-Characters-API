@@ -14,10 +14,10 @@ namespace Assignment3.Models.Domain
         public string Name { get; set; }
         [MaxLength(100)]
         public string Alias { get; set; }
-        [MaxLength(20)]
+        [MaxLength(50)]
         public string Gender { get; set; }
         [Url]
-        [MaxLength(300)]
+        [MaxLength(500)]
         public string Picture { get; set; }
 
         // Relationships

@@ -11,17 +11,8 @@ namespace Assignment3
 {
     public class Program
     {
-        // TODO: Navigation null on delete
-        // TODO: FirstOrDefault change back
-
-        // TODO: Check Controllers
-        // TODO: Add [NotNullAttribute], [MaxLength(-, ErrorMessage=...)]?
-        // NotFound(); Message?
-
-        // TODO: Summary methods, add returns
-
-        // TODO: Database async await (only when accessing database)
-
+        // TODO: Test everything again
+        
         // TODO: Redo the migrations
 
         public static void Main(string[] args)

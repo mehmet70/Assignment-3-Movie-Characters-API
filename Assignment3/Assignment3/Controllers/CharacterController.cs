@@ -33,7 +33,7 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Gets all characters from the database.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A list of all characters in the database and a responsetype indicating success.</returns>
         [HttpGet]
         [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetCharacters()
@@ -48,8 +48,8 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Get a specific character from the database by ID.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Character ID</param>
+        /// <returns>A character from the database and a responsetype indicating whether the character was found.</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -74,9 +74,9 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Updates a character in the database.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="character"></param>
-        /// <returns></returns>
+        /// <param name="id">Character ID</param>
+        /// <param name="character">The character data to update.</param>
+        /// <returns>A responsetype indicating success and whether the character was found.</returns>
         [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -118,8 +118,8 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Adds a new character to the database.
         /// </summary>
-        /// <param name="character"></param>
-        /// <returns></returns>
+        /// <param name="character">The character data to add to the database.</param>
+        /// <returns>A character ID, character data and a responsetype indicating success.</returns>
         [HttpPost]
         [ProducesResponseType(201)]
         public async Task<ActionResult<CharacterReadDTO>> PostCharacter([FromBody] CharacterCreateDTO character)
@@ -142,14 +142,15 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Deletes a character from the database.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Character ID</param>
+        /// <returns>A responsetype indicating success and whether the character was found.</returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public async Task<ActionResult> DeleteCharacter(int id)
         {
-            var character = await _context.Characters.Find(id);
+            var character = await _context.Characters.FindAsync(id);
+
             if (character == null)
             {
                 return NotFound();

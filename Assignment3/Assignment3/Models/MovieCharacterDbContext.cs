@@ -296,8 +296,8 @@ namespace Assignment3.Models
             #region Many to many seeding
 
             modelBuilder.Entity<Movie>()
-                .HasMany(p => p.Characters)
-                .WithMany(m => m.Movies)
+                .HasMany(m => m.Characters)
+                .WithMany(c => c.Movies)
                 .UsingEntity<Dictionary<string, object>>(
                     "CharacterMovie",
                     r => r.HasOne<Character>().WithMany().HasForeignKey("CharactersId"),

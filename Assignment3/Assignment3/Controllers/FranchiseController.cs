@@ -34,7 +34,7 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Get all franchises in the database.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A list of all franchises in the database and a responsetype indicating success.</returns>
         [HttpGet]
         [ProducesResponseType(200)]
         public async Task<ActionResult<IEnumerable<FranchiseReadDTO>>> GetFranchises()
@@ -49,8 +49,8 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Get a specific franchise from the database by ID.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Franchise ID</param>
+        /// <returns>A franchise from the database and a responsetype indicating whether the franchise was found.</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -71,8 +71,8 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Gets all movies from a specific franchise specified by ID.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Franchise ID</param>
+        /// <returns>A list of movies from the database and a responsetype indicating success.</returns>
         [HttpGet("{id}/movies")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
@@ -93,8 +93,8 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Gets all characters from a specific franchise specified by ID.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Franchise ID</param>
+        /// <returns>A list of characters from the database and a responsetype indicating success.</returns>
         [HttpGet("{id}/characters")]
         public async Task<ActionResult<CharacterReadDTO>> GetCharactersInFranchise(int id)
         {
@@ -123,9 +123,9 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Updates a franchise in the database.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="franchise"></param>
-        /// <returns></returns>
+        /// <param name="id">Franchise ID</param>
+        /// <param name="franchise">The franchise data to update.</param>
+        /// <returns>A responsetype indicating success and whether the franchise was found.</returns>
         [HttpPut("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -162,9 +162,9 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Updates the movies in a franchise.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="movieIds"></param>
-        /// <returns></returns>
+        /// <param name="id">Franchise ID</param>
+        /// <param name="movieIds">The IDs of movies to update in the franchise.</param>
+        /// <returns>A responsetype indicating success and whether the franchise and movies were found.</returns>
         [HttpPut("{id}/movies")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
@@ -177,6 +177,7 @@ namespace Assignment3.Controllers
                 return NotFound();
             }
 
+            // Update the movies in the franchise
             franchise.Movies = new List<Movie>();
             
             foreach (var movieId in movieIds)
@@ -203,8 +204,8 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Adds a new franchise to the database.
         /// </summary>
-        /// <param name="franchise"></param>
-        /// <returns></returns>
+        /// <param name="franchise">The franchise data to add to the database.</param>
+        /// <returns>A franchise ID, franchise data and a responsetype indicating success.</returns>
         [HttpPost]
         [ProducesResponseType(201)]
         public async Task<ActionResult<FranchiseReadDTO>> PostFranchise([FromBody] FranchiseCreateDTO franchise)
@@ -227,14 +228,16 @@ namespace Assignment3.Controllers
         /// <summary>
         /// Deletes a franchise from the database.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Franchise ID</param>
+        /// <returns>A responsetype indicating success and whether the franchise was found.</returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
         public async Task<ActionResult> DeleteFranchise(int id)
         {
+            // Include the movies to set the foreign key in movies to null on deletion of franchise
             var franchise = await _context.Franchises.Include(f => f.Movies).FirstOrDefaultAsync(f => f.Id == id);
+
             if (franchise == null)
             {
                 return NotFound();

@@ -18,10 +18,10 @@ namespace Assignment3.Models.Domain
         [MaxLength(100)]
         public string Director { get; set; }
         [Url]
-        [MaxLength(300)]
+        [MaxLength(500)]
         public string Picture { get; set; }
         [Url]
-        [MaxLength(300)]
+        [MaxLength(500)]
         public string Trailer { get; set; }
 
         // Relationships
